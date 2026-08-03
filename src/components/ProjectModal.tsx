@@ -1,10 +1,10 @@
-import { useEffect, useCallback } from 'react'
+import { useEffect, useCallback, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ExternalLink } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import ImageGallery from './ImageGallery'
-import { getProjectContent } from '../utils/contentLoader'
+import { basePath } from '../utils/basePath'
 import type { Project } from '../types'
 
 interface Props {
@@ -13,7 +13,19 @@ interface Props {
 }
 
 export default function ProjectModal({ project, onClose }: Props) {
-  const content = project ? getProjectContent(project.id) : ''
+  const [content, setContent] = useState('')
+
+  useEffect(() => {
+    if (project) {
+      const ts = Date.now()
+      fetch(`${basePath(project.contentPath)}?v=${ts}`)
+        .then((res) => res.text())
+        .then(setContent)
+        .catch(() => setContent(''))
+    } else {
+      setContent('')
+    }
+  }, [project])
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
