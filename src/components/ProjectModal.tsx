@@ -75,7 +75,7 @@ export default function ProjectModal({ project, onClose }: Props) {
             aria-label={project.title}
           >
             <div className="flex items-center justify-between border-b px-5 py-3" style={{ borderColor: 'var(--border-color)' }}>
-              <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>{project.title}</span>
+              <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>Проект</span>
               <button
                 onClick={onClose}
                 aria-label="Закрыть"
@@ -89,9 +89,7 @@ export default function ProjectModal({ project, onClose }: Props) {
             <div className="p-5 sm:p-6">
               <ImageGallery images={project.images} title={project.title} />
 
-              <h2 className="mt-5 text-2xl font-bold">{project.title}</h2>
-
-              <div className="markdown mt-4 text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <div className="markdown mt-5 text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>
                   {content || '*Загрузка...*'}
                 </ReactMarkdown>
