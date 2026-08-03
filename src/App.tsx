@@ -37,31 +37,22 @@ export default function App() {
     <>
       <CustomCursor />
 
-      <div className="pointer-events-none fixed inset-0 z-0" style={{
-        background: 'radial-gradient(ellipse at center, color-mix(in srgb, var(--accent) 8%, transparent) 0%, transparent 70%)',
-      }} />
+      {/* Full-screen background photo */}
+      <div className="pointer-events-none fixed inset-0 z-0">
+        <img
+          src={basePath('/central.jpg')}
+          alt=""
+          className="h-full w-full object-cover"
+          style={{ filter: 'brightness(0.6) saturate(0.8)' }}
+        />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 60%, var(--bg-primary))' }} />
+      </div>
+
       <div className="vignette" />
 
       <ThemeToggle />
 
       <main className="relative z-10 flex min-h-screen flex-col items-center justify-center p-4">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, ease: 'easeInOut' }}
-          className="relative z-10"
-        >
-          <div className="relative">
-            <div className="absolute -inset-4 rounded-full" style={{ background: 'color-mix(in srgb, var(--accent) 15%, transparent)', filter: 'blur(2rem)' }} />
-            <img
-              src={basePath('/central.jpg')}
-              alt="Портрет"
-              className="relative h-48 w-48 rounded-full object-cover sm:h-56 sm:w-56 md:h-64 md:w-64"
-              style={{ boxShadow: '0 0 0 2px var(--glow)' }}
-            />
-          </div>
-        </motion.div>
-
         {/* Desktop floating icons */}
         <div className="hidden md:block">
           {projects.map((project, i) => (

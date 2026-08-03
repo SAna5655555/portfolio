@@ -12,10 +12,10 @@ export default defineConfig({
     tailwindcss(),
     {
       name: 'watch-public-md',
+      apply: 'serve',
       configureServer(server) {
         const projectsDir = path.resolve('public/projects')
         if (!fs.existsSync(projectsDir)) return
-
         try {
           fs.watch(projectsDir, { recursive: true }, (_, filename) => {
             if (filename && filename.endsWith('.md')) {
