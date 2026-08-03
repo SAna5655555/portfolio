@@ -17,7 +17,8 @@ export default function ProjectModal({ project, onClose }: Props) {
 
   useEffect(() => {
     if (project) {
-      fetch(basePath(project.contentPath))
+      const ts = Date.now()
+      fetch(`${basePath(project.contentPath)}?v=${ts}`)
         .then((res) => res.text())
         .then(setContent)
         .catch(() => setContent(''))
