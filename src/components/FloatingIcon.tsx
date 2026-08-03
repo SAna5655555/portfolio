@@ -39,19 +39,20 @@ export default function FloatingIcon({ project, index, positions, floatDelay, fl
       whileHover={{ scale: 1.1 }}
       onClick={onClick}
       data-hoverable
-      aria-label={`Open ${project.title}`}
+      aria-label={`Открыть ${project.title}`}
       className="absolute z-[5] flex cursor-none flex-col items-center gap-2"
       style={{ top: positions.top, left: positions.left }}
     >
       <motion.div
-        className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[rgba(108,92,231,0.1)] backdrop-blur-md transition-shadow duration-300"
+        className="flex h-16 w-16 items-center justify-center rounded-2xl backdrop-blur-md transition-shadow duration-300"
+        style={{ background: 'color-mix(in srgb, var(--accent) 10%, transparent)' }}
         whileHover={{
-          boxShadow: '0 0 30px rgba(108, 92, 231, 0.4), 0 0 60px rgba(108, 92, 231, 0.2)',
+          boxShadow: '0 0 30px var(--glow), 0 0 60px var(--glow)',
         }}
       >
-        <Icon size={28} className="text-[#6c5ce7]" />
+        <Icon size={28} style={{ color: 'var(--accent)' }} />
       </motion.div>
-      <span className="max-w-[100px] truncate text-center text-xs font-medium text-[#a0a0b8]">
+      <span className="max-w-[100px] truncate text-center text-xs font-medium" style={{ color: 'var(--text-secondary)' }}>
         {project.shortTitle}
       </span>
     </motion.button>

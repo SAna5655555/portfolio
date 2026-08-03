@@ -7,7 +7,7 @@ export default function ThemeToggle() {
 
   useEffect(() => {
     const stored = localStorage.getItem('theme')
-    const isDark = stored ? stored === 'dark' : true
+    const isDark = stored !== null ? stored === 'dark' : true
     setDark(isDark)
     document.documentElement.classList.toggle('dark', isDark)
   }, [])
@@ -26,8 +26,8 @@ export default function ThemeToggle() {
       transition={{ delay: 1.2, duration: 0.5 }}
       onClick={toggle}
       data-hoverable
-      aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="fixed right-6 top-6 z-50 flex h-10 w-10 items-center justify-center rounded-full glass text-[#a0a0b8] transition-colors hover:text-[#6c5ce7]"
+      aria-label={dark ? 'Включить светлую тему' : 'Включить тёмную тему'}
+      className="fixed right-6 top-6 z-50 flex h-10 w-10 items-center justify-center rounded-full glass"
     >
       <motion.div
         key={dark ? 'moon' : 'sun'}

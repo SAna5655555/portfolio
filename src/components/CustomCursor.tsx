@@ -31,7 +31,6 @@ export default function CustomCursor() {
     window.addEventListener('mousemove', handleMouseMove)
     window.addEventListener('mouseover', handleMouseOver)
     window.addEventListener('mouseout', handleMouseOut)
-
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('mouseover', handleMouseOver)

@@ -25,9 +25,7 @@ export const projects: Project[] = [
       'Bootstrap 5',
       'Plotly',
     ],
-    links: [
-      { label: 'GitHub', url: '#' },
-    ],
+    links: [],
     result:
       'Сокращение времени на рутинные задачи с 2-3 часов до 15 минут. 100% покрытие инцидентов в базе знаний. Оптимальная загрузка оборудования.',
   },
@@ -49,7 +47,6 @@ export const projects: Project[] = [
     ],
     links: [
       { label: 'Telegram', url: 'https://t.me/im_smm_bitch' },
-      { label: 'GitHub', url: '#' },
     ],
     result:
       'С 0 до 500+ подписчиков за 2 месяца. 5 постов в день вместо 1-2. Полная автоматизация: контент генерируется и публикуется без участия человека.',

@@ -32,7 +32,8 @@ export default function SocialBar() {
             whileHover={{ scale: 1.15, y: -3 }}
             data-hoverable
             aria-label={link.label}
-            className="flex h-10 w-10 items-center justify-center rounded-full glass text-[#a0a0b8] transition-colors hover:text-[#6c5ce7]"
+            className="flex h-10 w-10 items-center justify-center rounded-full glass transition-colors"
+            style={{ color: 'var(--text-secondary)' }}
           >
             <Icon size={18} />
           </motion.a>

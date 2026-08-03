@@ -1,9 +1,10 @@
 import { useEffect, useCallback, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ExternalLink, Code2 } from 'lucide-react'
+import { X, ExternalLink } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import ImageGallery from './ImageGallery'
+import { basePath } from '../utils/basePath'
 import type { Project } from '../types'
 
 interface Props {
@@ -16,7 +17,7 @@ export default function ProjectModal({ project, onClose }: Props) {
 
   useEffect(() => {
     if (project) {
-      fetch(project.contentPath)
+      fetch(basePath(project.contentPath))
         .then((res) => res.text())
         .then(setContent)
         .catch(() => setContent(''))
@@ -43,11 +44,6 @@ export default function ProjectModal({ project, onClose }: Props) {
     }
   }, [project, handleKeyDown])
 
-  const linkIcon = (label: string) => {
-    if (label.toLowerCase().includes('github')) return <Code2 size={16} />
-    return <ExternalLink size={16} />
-  }
-
   return (
     <AnimatePresence>
       {project && (
@@ -56,14 +52,14 @@ export default function ProjectModal({ project, onClose }: Props) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6"
+          className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto p-4 pt-8 sm:p-6 sm:pt-12"
           onClick={onClose}
         >
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-black/60 backdrop-blur-md"
+            className="fixed inset-0 bg-black/60 backdrop-blur-md"
           />
 
           <motion.div
@@ -72,17 +68,18 @@ export default function ProjectModal({ project, onClose }: Props) {
             exit={{ opacity: 0, scale: 0.9, y: 30 }}
             transition={{ duration: 0.35, ease: 'easeInOut' }}
             onClick={(e) => e.stopPropagation()}
-            className="relative z-10 max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl glass shadow-2xl"
+            className="relative z-10 w-full max-w-3xl rounded-2xl glass shadow-2xl"
             role="dialog"
             aria-modal="true"
             aria-label={project.title}
           >
-            <div className="flex items-center justify-between border-b border-white/10 px-5 py-3">
-              <span className="text-sm font-medium text-[#a0a0b8]">{project.title}</span>
+            <div className="flex items-center justify-between border-b px-5 py-3" style={{ borderColor: 'var(--border-color)' }}>
+              <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>{project.title}</span>
               <button
                 onClick={onClose}
-                aria-label="Close modal"
-                className="flex h-7 w-7 items-center justify-center rounded-full text-[#a0a0b8] transition-colors hover:bg-white/10 hover:text-white"
+                aria-label="Закрыть"
+                className="flex h-7 w-7 items-center justify-center rounded-full transition-colors"
+                style={{ color: 'var(--text-secondary)' }}
               >
                 <X size={16} />
               </button>
@@ -93,7 +90,7 @@ export default function ProjectModal({ project, onClose }: Props) {
 
               <h2 className="mt-5 text-2xl font-bold">{project.title}</h2>
 
-              <div className="markdown mt-4 text-sm leading-relaxed text-[#a0a0b8]">
+              <div className="markdown mt-4 text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>
                   {content || '*Загрузка...*'}
                 </ReactMarkdown>
@@ -101,14 +98,18 @@ export default function ProjectModal({ project, onClose }: Props) {
 
               {project.stack.length > 0 && (
                 <div className="mt-5">
-                  <h3 className="mb-2 text-sm font-semibold uppercase tracking-wider text-[#a0a0b8]">
+                  <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
                     Стек технологий
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {project.stack.map((tech) => (
                       <span
                         key={tech}
-                        className="rounded-full bg-[rgba(108,92,231,0.1)] px-3 py-1 text-xs font-medium text-[#a29bfe]"
+                        className="rounded-full px-3 py-1 text-xs font-medium"
+                        style={{
+                          background: 'color-mix(in srgb, var(--accent) 10%, transparent)',
+                          color: 'var(--accent-light)',
+                        }}
                       >
                         {tech}
                       </span>
@@ -119,7 +120,7 @@ export default function ProjectModal({ project, onClose }: Props) {
 
               {project.links.length > 0 && (
                 <div className="mt-5">
-                  <h3 className="mb-2 text-sm font-semibold uppercase tracking-wider text-[#a0a0b8]">
+                  <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
                     Ссылки
                   </h3>
                   <div className="flex flex-wrap gap-3">
@@ -129,9 +130,13 @@ export default function ProjectModal({ project, onClose }: Props) {
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-lg bg-[rgba(108,92,231,0.1)] px-4 py-2 text-sm font-medium text-[#a29bfe] transition-colors hover:bg-[rgba(108,92,231,0.2)]"
+                        className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors"
+                        style={{
+                          background: 'color-mix(in srgb, var(--accent) 10%, transparent)',
+                          color: 'var(--accent-light)',
+                        }}
                       >
-                        {linkIcon(link.label)}
+                        <ExternalLink size={16} />
                         {link.label}
                       </a>
                     ))}
@@ -140,11 +145,11 @@ export default function ProjectModal({ project, onClose }: Props) {
               )}
 
               {project.result && (
-                <div className="mt-5 rounded-xl bg-[rgba(108,92,231,0.05)] p-4">
-                  <h3 className="mb-1 text-sm font-semibold uppercase tracking-wider text-[#a0a0b8]">
+                <div className="mt-5 rounded-xl p-4" style={{ background: 'color-mix(in srgb, var(--accent) 5%, transparent)' }}>
+                  <h3 className="mb-2 text-sm font-semibold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
                     Результат
                   </h3>
-                  <p className="text-sm leading-relaxed text-[#a29bfe]">{project.result}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--accent-light)' }}>{project.result}</p>
                 </div>
               )}
             </div>
