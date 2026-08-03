@@ -105,17 +105,13 @@ export default function ImageGallery({ images, title }: Props) {
                 <button
                   onClick={(e) => { e.stopPropagation(); prev() }}
                   aria-label="Предыдущее"
-                  className="absolute left-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 active:bg-white/30"
-                >
-                  <ChevronLeft size={28} />
-                </button>
+                  className="absolute left-0 top-0 z-10 h-full w-1/3 cursor-none opacity-0"
+                />
                 <button
                   onClick={(e) => { e.stopPropagation(); next() }}
                   aria-label="Следующее"
-                  className="absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 active:bg-white/30"
-                >
-                  <ChevronRight size={28} />
-                </button>
+                  className="absolute right-0 top-0 z-10 h-full w-1/3 cursor-none opacity-0"
+                />
               </>
             )}
 
