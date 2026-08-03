@@ -31,7 +31,7 @@ export default function ImageGallery({ images, title }: Props) {
 
   return (
     <>
-      <div className="relative w-full overflow-hidden rounded-xl" style={{ maxHeight: '70vh' }}>
+      <div className="relative w-full overflow-hidden rounded-xl">
         <AnimatePresence custom={direction} mode="wait">
           <motion.img
             key={current}
@@ -46,6 +46,7 @@ export default function ImageGallery({ images, title }: Props) {
             className="h-auto w-full cursor-pointer object-contain"
             loading="lazy"
             onClick={() => setFullscreen(true)}
+            draggable="false"
           />
         </AnimatePresence>
 
@@ -54,14 +55,14 @@ export default function ImageGallery({ images, title }: Props) {
             <button
               onClick={prev}
               aria-label="Предыдущее"
-              className="absolute left-3 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-colors hover:bg-black/60"
+              className="absolute left-3 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-colors hover:bg-black/60 active:bg-black/80"
             >
               <ChevronLeft size={18} />
             </button>
             <button
               onClick={next}
               aria-label="Следующее"
-              className="absolute right-3 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-colors hover:bg-black/60"
+              className="absolute right-3 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-colors hover:bg-black/60 active:bg-black/80"
             >
               <ChevronRight size={18} />
             </button>
@@ -82,7 +83,6 @@ export default function ImageGallery({ images, title }: Props) {
         )}
       </div>
 
-      {/* Fullscreen overlay */}
       <AnimatePresence>
         {fullscreen && (
           <motion.div
@@ -95,7 +95,7 @@ export default function ImageGallery({ images, title }: Props) {
             <button
               onClick={() => setFullscreen(false)}
               aria-label="Закрыть"
-              className="absolute right-6 top-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm hover:bg-white/20"
+              className="absolute right-6 top-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 active:bg-white/30"
             >
               <X size={24} />
             </button>
@@ -105,14 +105,14 @@ export default function ImageGallery({ images, title }: Props) {
                 <button
                   onClick={(e) => { e.stopPropagation(); prev() }}
                   aria-label="Предыдущее"
-                  className="absolute left-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm hover:bg-white/20"
+                  className="absolute left-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 active:bg-white/30"
                 >
                   <ChevronLeft size={28} />
                 </button>
                 <button
                   onClick={(e) => { e.stopPropagation(); next() }}
                   aria-label="Следующее"
-                  className="absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm hover:bg-white/20"
+                  className="absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 active:bg-white/30"
                 >
                   <ChevronRight size={28} />
                 </button>
@@ -126,8 +126,9 @@ export default function ImageGallery({ images, title }: Props) {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="max-h-[90vh] max-w-full rounded-lg object-contain"
+              className="max-h-[90vh] max-w-full rounded-lg object-contain select-none"
               onClick={(e) => e.stopPropagation()}
+              draggable="false"
             />
           </motion.div>
         )}

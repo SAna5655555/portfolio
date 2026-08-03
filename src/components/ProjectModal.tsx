@@ -52,8 +52,8 @@ export default function ProjectModal({ project, onClose }: Props) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto p-4 pt-8 sm:p-6 sm:pt-12"
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4"
           onClick={onClose}
         >
           <motion.div
@@ -64,32 +64,32 @@ export default function ProjectModal({ project, onClose }: Props) {
           />
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 30 }}
-            transition={{ duration: 0.35, ease: 'easeInOut' }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
             onClick={(e) => e.stopPropagation()}
-            className="relative z-10 w-full max-w-3xl rounded-2xl glass shadow-2xl"
+            className="relative z-10 flex max-h-[85vh] w-full max-w-3xl flex-col rounded-2xl glass shadow-2xl"
             role="dialog"
             aria-modal="true"
             aria-label={project.title}
           >
-            <div className="flex items-center justify-between border-b px-5 py-3" style={{ borderColor: 'var(--border-color)' }}>
-              <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>Проект</span>
+            <div className="flex shrink-0 items-center justify-between border-b px-4 py-2.5 sm:px-5 sm:py-3" style={{ borderColor: 'var(--border-color)' }}>
+              <span className="truncate text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>Проект</span>
               <button
                 onClick={onClose}
                 aria-label="Закрыть"
-                className="flex h-7 w-7 items-center justify-center rounded-full transition-colors"
+                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors"
                 style={{ color: 'var(--text-secondary)' }}
               >
                 <X size={16} />
               </button>
             </div>
 
-            <div className="p-5 sm:p-6">
+            <div className="overflow-y-auto overscroll-contain p-4 sm:p-6">
               <ImageGallery images={project.images} title={project.title} />
 
-              <div className="markdown mt-5 text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <div className="markdown mt-5 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>
                   {content || '*Загрузка...*'}
                 </ReactMarkdown>
@@ -97,7 +97,7 @@ export default function ProjectModal({ project, onClose }: Props) {
 
               {project.stack.length > 0 && (
                 <div className="mt-5">
-                  <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+                  <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
                     Стек технологий
                   </h3>
                   <div className="flex flex-wrap gap-2">
@@ -119,7 +119,7 @@ export default function ProjectModal({ project, onClose }: Props) {
 
               {project.links.length > 0 && (
                 <div className="mt-5">
-                  <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+                  <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
                     Ссылки
                   </h3>
                   <div className="flex flex-wrap gap-3">
@@ -145,7 +145,7 @@ export default function ProjectModal({ project, onClose }: Props) {
 
               {project.result && (
                 <div className="mt-5 rounded-xl p-4" style={{ background: 'color-mix(in srgb, var(--accent) 5%, transparent)' }}>
-                  <h3 className="mb-2 text-sm font-semibold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+                  <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
                     Результат
                   </h3>
                   <p className="text-sm leading-relaxed" style={{ color: 'var(--accent-light)' }}>{project.result}</p>
