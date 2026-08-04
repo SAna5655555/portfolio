@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react'
+import { useState, useCallback } from 'react'
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { basePath } from '../utils/basePath'
@@ -12,7 +12,6 @@ export default function ImageGallery({ images, title }: Props) {
   const [current, setCurrent] = useState(0)
   const [direction, setDirection] = useState(0)
   const [fullscreen, setFullscreen] = useState(false)
-  const touchStartX = useRef(0)
 
   const goTo = useCallback((i: number) => {
     setDirection(i > current ? 1 : -1)
@@ -28,18 +27,6 @@ export default function ImageGallery({ images, title }: Props) {
     enter: (dir: number) => ({ x: dir > 0 ? 300 : -300, opacity: 0 }),
     center: { x: 0, opacity: 1 },
     exit: (dir: number) => ({ x: dir > 0 ? -300 : 300, opacity: 0 }),
-  }
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX
-  }
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    const diff = touchStartX.current - e.changedTouches[0].clientX
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) next()
-      else prev()
-    }
   }
 
   return (
@@ -104,8 +91,6 @@ export default function ImageGallery({ images, title }: Props) {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 p-4"
             onClick={() => setFullscreen(false)}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
           >
             <button
               onClick={(e) => { e.stopPropagation(); setFullscreen(false) }}
