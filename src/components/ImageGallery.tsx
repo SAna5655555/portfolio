@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { basePath } from '../utils/basePath'
@@ -12,6 +12,7 @@ export default function ImageGallery({ images, title }: Props) {
   const [current, setCurrent] = useState(0)
   const [direction, setDirection] = useState(0)
   const [fullscreen, setFullscreen] = useState(false)
+  const touchStartX = useRef(0)
 
   const goTo = useCallback((i: number) => {
     setDirection(i > current ? 1 : -1)
@@ -27,6 +28,18 @@ export default function ImageGallery({ images, title }: Props) {
     enter: (dir: number) => ({ x: dir > 0 ? 300 : -300, opacity: 0 }),
     center: { x: 0, opacity: 1 },
     exit: (dir: number) => ({ x: dir > 0 ? -300 : 300, opacity: 0 }),
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) next()
+      else prev()
+    }
   }
 
   return (
@@ -91,11 +104,13 @@ export default function ImageGallery({ images, title }: Props) {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 p-4"
             onClick={() => setFullscreen(false)}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
           >
             <button
-              onClick={() => setFullscreen(false)}
+              onClick={(e) => { e.stopPropagation(); setFullscreen(false) }}
               aria-label="Закрыть"
-              className="absolute right-6 top-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 active:bg-white/30"
+              className="absolute right-6 top-6 z-[201] flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 active:bg-white/30"
             >
               <X size={24} />
             </button>
@@ -105,12 +120,12 @@ export default function ImageGallery({ images, title }: Props) {
                 <button
                   onClick={(e) => { e.stopPropagation(); prev() }}
                   aria-label="Предыдущее"
-                  className="absolute left-0 top-0 z-10 h-full w-1/3 cursor-none opacity-0"
+                  className="absolute left-0 top-0 z-[199] h-full w-20 cursor-none opacity-0 sm:w-32"
                 />
                 <button
                   onClick={(e) => { e.stopPropagation(); next() }}
                   aria-label="Следующее"
-                  className="absolute right-0 top-0 z-10 h-full w-1/3 cursor-none opacity-0"
+                  className="absolute right-0 top-0 z-[199] h-full w-20 cursor-none opacity-0 sm:w-32"
                 />
               </>
             )}
