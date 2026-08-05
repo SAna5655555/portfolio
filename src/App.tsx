@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Code2, Bot, Zap } from 'lucide-react'
 import FloatingIcon from './components/FloatingIcon'
 import ProjectModal from './components/ProjectModal'
+import TelegramModal from './components/TelegramModal'
 import ThemeToggle from './components/ThemeToggle'
 import SocialBar from './components/SocialBar'
 import CustomCursor from './components/CustomCursor'
@@ -23,6 +24,7 @@ const positions = [
 
 export default function App() {
   const [selected, setSelected] = useState<Project | null>(null)
+  const [tgOpen, setTgOpen] = useState(false)
 
   useEffect(() => {
     const link = document.createElement('link')
@@ -57,6 +59,7 @@ export default function App() {
       <div className="vignette" />
 
       <ThemeToggle />
+      <SocialBar onClick={() => setTgOpen(true)} />
 
       <main className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 py-16">
         {/* Desktop layout */}
@@ -65,19 +68,19 @@ export default function App() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: 'easeInOut' }}
-            className="mb-12 text-center"
+            className="mb-12"
           >
             <h1 className="text-5xl font-bold leading-tight md:text-6xl" style={{ color: 'var(--text-primary)' }}>
               Привет, меня зовут Александр
             </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed md:text-lg" style={{ color: 'var(--text-secondary)' }}>
+            <p className="mt-4 max-w-2xl text-justify text-base leading-relaxed md:text-lg" style={{ color: 'var(--accent)' }}>
               Я разработчик систем автоматизации и ИИ.
               Строю решения, которые собирают, анализируют и используют данные — без лишней сложности, с фокусом на результат.
             </p>
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+            <p className="mt-4 max-w-2xl text-justify text-sm leading-relaxed" style={{ color: 'var(--accent)' }}>
               На этом сайте представлены две мои самые интересные работы:
             </p>
-            <div className="mx-auto mt-3 max-w-xl text-left text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+            <div className="mt-3 max-w-xl text-justify text-sm leading-relaxed" style={{ color: 'var(--accent)' }}>
               <p><strong style={{ color: 'var(--accent)' }}>Интеллектуальный Ассистент Инженера</strong> — B2B-платформа для автоматизации технической поддержки промышленного оборудования.</p>
               <p className="mt-2"><strong style={{ color: 'var(--accent)' }}>Автоматизация Telegram-канала</strong> — бот с ИИ-генерацией контента, который парсит новости, пишет посты и создаёт картинки.</p>
             </div>
@@ -105,12 +108,11 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center"
           >
-            <h1 className="text-3xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
+            <h1 className="text-3xl font-bold leading-tight text-center" style={{ color: 'var(--text-primary)' }}>
               Привет, меня зовут Александр
             </h1>
-            <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+            <p className="mx-auto mt-3 max-w-sm text-justify text-sm leading-relaxed" style={{ color: 'var(--accent)' }}>
               Я разработчик систем автоматизации и ИИ.
               Строю решения, которые собирают, анализируют и используют данные — без лишней сложности, с фокусом на результат.
             </p>
@@ -142,8 +144,8 @@ export default function App() {
         </div>
       </main>
 
-      <SocialBar />
       <ProjectModal project={selected} onClose={() => setSelected(null)} />
+      <TelegramModal open={tgOpen} onClose={() => setTgOpen(false)} />
     </>
   )
 }

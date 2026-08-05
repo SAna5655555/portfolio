@@ -25,7 +25,9 @@ export const projects: Project[] = [
       'Bootstrap 5',
       'Plotly',
     ],
-    links: [],
+    links: [
+      { label: 'GitHub', url: 'https://github.com/on1x-ai' },
+    ],
     result:
       'Сокращение времени на рутинные задачи с 2-3 часов до 15 минут. 100% покрытие инцидентов в базе знаний. Оптимальная загрузка оборудования.',
   },
