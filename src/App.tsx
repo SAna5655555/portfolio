@@ -72,16 +72,16 @@ export default function App() {
             Привет, меня зовут Александр
           </h1>
 
-          <p className="mt-6 text-justify text-base leading-relaxed" style={{ color: 'var(--text-primary)' }}>
+          <p className="mt-6 text-left text-base leading-relaxed md:text-justify" style={{ color: 'var(--text-primary)' }}>
             Я разработчик систем автоматизации и ИИ.
             Строю решения, которые собирают, анализируют и используют данные — без лишней сложности, с фокусом на результат.
           </p>
 
-          <p className="mt-4 text-justify text-base leading-relaxed" style={{ color: 'var(--text-primary)' }}>
+          <p className="mt-4 text-left text-base leading-relaxed md:text-justify" style={{ color: 'var(--text-primary)' }}>
             На этом сайте представлены две мои самые интересные работы:
           </p>
 
-          <div className="mt-3 text-justify text-base leading-relaxed" style={{ color: 'var(--text-primary)' }}>
+          <div className="mt-3 text-left text-base leading-relaxed md:text-justify" style={{ color: 'var(--text-primary)' }}>
             <p><strong>Интеллектуальный Ассистент Инженера</strong> — B2B-платформа для автоматизации технической поддержки промышленного оборудования.</p>
             <p className="mt-2"><strong>Автоматизация Telegram-канала</strong> — бот с ИИ-генерацией контента, который парсит новости, пишет посты и создаёт картинки.</p>
           </div>

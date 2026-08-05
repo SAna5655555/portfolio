@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Send } from 'lucide-react'
+import { X, Send, Mail } from 'lucide-react'
 
 interface Props {
   open: boolean
@@ -41,24 +41,41 @@ export default function TelegramModal({ open, onClose }: Props) {
               <X size={16} />
             </button>
 
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-5">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl" style={{ background: 'color-mix(in srgb, var(--accent) 15%, transparent)' }}>
                 <Send size={32} style={{ color: 'var(--accent)' }} />
               </div>
-              <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>Мой Telegram</p>
-              <a
-                href="https://t.me/on1x_dev"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-base font-medium transition-colors"
-                style={{
-                  background: 'color-mix(in srgb, var(--accent) 15%, transparent)',
-                  color: 'var(--accent)',
-                }}
-              >
-                @on1x_dev
-              </a>
-              <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Нажми, чтобы открыть в Telegram</p>
+
+              <div className="flex flex-col items-center gap-2">
+                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>Мой Telegram</p>
+                <a
+                  href="https://t.me/on1x_dev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg px-6 py-2.5 text-base font-medium transition-colors"
+                  style={{
+                    background: 'color-mix(in srgb, var(--accent) 15%, transparent)',
+                    color: 'var(--accent)',
+                  }}
+                >
+                  @on1x_dev
+                </a>
+              </div>
+
+              <div className="flex flex-col items-center gap-2">
+                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>Рабочая почта</p>
+                <a
+                  href="mailto:on1xaidev@gmail.com"
+                  className="inline-flex items-center gap-2 rounded-lg px-6 py-2.5 text-base font-medium transition-colors"
+                  style={{
+                    background: 'color-mix(in srgb, var(--accent) 15%, transparent)',
+                    color: 'var(--accent)',
+                  }}
+                >
+                  <Mail size={18} />
+                  on1xaidev@gmail.com
+                </a>
+              </div>
             </div>
           </motion.div>
         </motion.div>
