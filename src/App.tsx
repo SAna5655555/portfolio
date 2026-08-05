@@ -45,18 +45,6 @@ export default function App() {
     <>
       <CustomCursor />
 
-      <div className="pointer-events-none fixed inset-0 z-0">
-        <img
-          src={basePath('/central.jpg')}
-          alt=""
-          className="h-full w-full object-cover"
-          style={{ filter: 'brightness(0.5) saturate(0.8)' }}
-        />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 40%, var(--bg-primary) 100%)' }} />
-      </div>
-
-      <div className="vignette" />
-
       <SocialBar onClick={() => setTgOpen(true)} />
 
       <main className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 py-16">
