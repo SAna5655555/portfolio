@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Kamerik 205';
+  src: url('./Kamerik205Book.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Kamerik 205';
+  src: url('./Kamerik205Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
