@@ -4,7 +4,6 @@ import { Code2, Bot, Zap } from 'lucide-react'
 import FloatingIcon from './components/FloatingIcon'
 import ProjectModal from './components/ProjectModal'
 import TelegramModal from './components/TelegramModal'
-import ThemeToggle from './components/ThemeToggle'
 import SocialBar from './components/SocialBar'
 import CustomCursor from './components/CustomCursor'
 import { projects } from './data/projects'
@@ -58,7 +57,6 @@ export default function App() {
 
       <div className="vignette" />
 
-      <ThemeToggle />
       <SocialBar onClick={() => setTgOpen(true)} />
 
       <main className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 py-16">
