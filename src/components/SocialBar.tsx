@@ -14,10 +14,10 @@ export default function SocialBar({ onClick }: Props) {
       onClick={onClick}
       data-hoverable
       aria-label="Telegram"
-      className="fixed left-6 top-6 z-50 flex h-10 w-10 items-center justify-center rounded-full glass transition-colors"
-      style={{ color: 'var(--accent)' }}
+      className="fixed left-6 top-6 z-50 flex h-12 w-12 items-center justify-center rounded-full glass transition-colors"
+      style={{ color: 'var(--text-primary)' }}
     >
-      <Send size={18} />
+      <Send size={22} />
     </motion.button>
   )
 }

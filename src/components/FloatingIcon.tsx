@@ -40,19 +40,19 @@ export default function FloatingIcon({ project, index, positions, floatDelay, fl
       onClick={onClick}
       data-hoverable
       aria-label={`Открыть ${project.title}`}
-      className="absolute z-[5] flex cursor-none flex-col items-center gap-2"
+      className="absolute z-[5] flex cursor-none flex-col items-center gap-3"
       style={{ top: positions.top, left: positions.left }}
     >
       <motion.div
-        className="flex h-16 w-16 items-center justify-center rounded-2xl backdrop-blur-md transition-shadow duration-300"
+        className="flex h-24 w-24 items-center justify-center rounded-2xl backdrop-blur-md transition-shadow duration-300 md:h-28 md:w-28"
         style={{ background: 'color-mix(in srgb, var(--accent) 10%, transparent)' }}
         whileHover={{
           boxShadow: '0 0 30px var(--glow), 0 0 60px var(--glow)',
         }}
       >
-        <Icon size={28} style={{ color: 'var(--accent)' }} />
+        <Icon size={40} style={{ color: 'var(--accent)' }} />
       </motion.div>
-      <span className="max-w-[100px] truncate text-center text-xs font-medium" style={{ color: 'var(--text-secondary)' }}>
+      <span className="max-w-[120px] text-center text-sm font-medium leading-tight" style={{ color: 'var(--text-secondary)' }}>
         {project.shortTitle}
       </span>
     </motion.button>

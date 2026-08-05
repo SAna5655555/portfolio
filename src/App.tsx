@@ -13,10 +13,10 @@ import type { Project } from './types'
 const iconKeys = ['Code2', 'Bot', 'Zap']
 
 const positions = [
-  { top: '12%', left: '8%' },
-  { top: '8%', left: '72%' },
-  { top: '52%', left: '6%' },
-  { top: '48%', left: '78%' },
+  { top: '10%', left: '5%' },
+  { top: '10%', left: '75%' },
+  { top: '55%', left: '5%' },
+  { top: '55%', left: '75%' },
   { top: '72%', left: '12%' },
   { top: '68%', left: '70%' },
 ]
@@ -87,7 +87,7 @@ export default function App() {
 
         {/* Desktop floating icons */}
         <div className="hidden w-full max-w-5xl md:block">
-          <div className="relative mt-10">
+          <div className="relative mt-10 h-96">
             {projects.map((project, i) => (
               <FloatingIcon
                 key={project.id}
@@ -104,7 +104,7 @@ export default function App() {
         </div>
 
         {/* Mobile project grid */}
-        <div className="mt-10 grid w-full max-w-md grid-cols-2 gap-4 md:hidden">
+        <div className="mt-10 grid w-full max-w-sm grid-cols-2 gap-6 md:hidden">
           {projects.map((project, i) => {
             const Icon = i === 0 ? Code2 : i === 1 ? Bot : Zap
             return (
@@ -116,11 +116,11 @@ export default function App() {
                 whileHover={{ scale: 1.05 }}
                 onClick={() => setSelected(project)}
                 data-hoverable
-                className="flex flex-col items-center gap-2 rounded-2xl p-4 backdrop-blur-md"
+                className="flex flex-col items-center gap-3 rounded-2xl p-6 backdrop-blur-md"
                 style={{ background: 'color-mix(in srgb, var(--accent) 8%, transparent)' }}
               >
-                <Icon size={28} style={{ color: 'var(--accent)' }} />
-                <span className="text-center text-xs font-medium" style={{ color: 'var(--text-secondary)' }}>
+                <Icon size={36} style={{ color: 'var(--accent)' }} />
+                <span className="text-center text-sm font-medium leading-tight" style={{ color: 'var(--text-secondary)' }}>
                   {project.shortTitle}
                 </span>
               </motion.button>
