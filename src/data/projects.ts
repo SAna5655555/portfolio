@@ -4,7 +4,7 @@ export const projects: Project[] = [
   {
     id: 'intelligent-assistant',
     title: 'Интеллектуальный Ассистент Инженера',
-    shortTitle: 'Ассистент Инженера',
+    shortTitle: 'Интеллектуальный Ассистент Инженера',
     description: 'Интеллектуальная система для автоматизации рутинных задач инженеров с RAG и LLM',
     cover: '/projects/intelligent-assistant/cover.jpg',
     images: [
@@ -34,7 +34,7 @@ export const projects: Project[] = [
   {
     id: 'telegram-ai-content',
     title: 'Автоматизация Telegram-канала с ИИ-генерацией контента',
-    shortTitle: 'Telegram AI Content',
+    shortTitle: 'Автоматизация Telegram-канала',
     description: 'Полностью автономный Telegram-канал с ежедневным ИИ-контентом',
     cover: '/projects/telegram-ai-content/cover.jpg',
     images: [
