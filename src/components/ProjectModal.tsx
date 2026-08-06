@@ -123,22 +123,35 @@ export default function ProjectModal({ project, onClose }: Props) {
                     Ссылки
                   </h3>
                   <div className="flex flex-wrap gap-3">
-                    {project.links.map((link) => (
-                      <a
-                        key={link.label}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors"
-                        style={{
-                          background: 'color-mix(in srgb, var(--accent) 10%, transparent)',
-                          color: 'var(--accent-light)',
-                        }}
-                      >
-                        <ExternalLink size={16} />
-                        {link.label}
-                      </a>
-                    ))}
+                    {project.links.map((link) =>
+                      link.url ? (
+                        <a
+                          key={link.label}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors"
+                          style={{
+                            background: 'color-mix(in srgb, var(--accent) 10%, transparent)',
+                            color: 'var(--accent-light)',
+                          }}
+                        >
+                          <ExternalLink size={16} />
+                          {link.label}
+                        </a>
+                      ) : (
+                        <span
+                          key={link.label}
+                          className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium"
+                          style={{
+                            background: 'color-mix(in srgb, var(--accent) 10%, transparent)',
+                            color: 'var(--text-secondary)',
+                          }}
+                        >
+                          {link.label}
+                        </span>
+                      )
+                    )}
                   </div>
                 </div>
               )}
